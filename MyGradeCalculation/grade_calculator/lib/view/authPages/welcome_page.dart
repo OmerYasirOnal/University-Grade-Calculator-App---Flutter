@@ -74,36 +74,36 @@ class _WelcomePageState extends State<WelcomePage> {
           value: _selectedTerm,
           items: const [
             DropdownMenuItem(
-              value: "1.Sınıf - Dönem 1",
-              child: Text("1.Sınıf - Dönem 1"),
+              value: "1.Sınıf - 1.Dönem",
+              child: Text("1.Sınıf - 1.Dönem"),
             ),
             DropdownMenuItem(
-              value: "1.Sınıf - Dönem 2",
-              child: Text("1.Sınıf - Dönem 2"),
+              value: "1.Sınıf - 2.Dönem",
+              child: Text("1.Sınıf - 2.Dönem"),
             ),
             DropdownMenuItem(
-              value: "2.Sınıf - Dönem 1",
-              child: Text("2.Sınıf - Dönem 1"),
+              value: "2.Sınıf - 1.Dönem",
+              child: Text("2.Sınıf - 1.Dönem"),
             ),
             DropdownMenuItem(
-              value: "2.Sınıf - Dönem 2",
-              child: Text("2.Sınıf - Dönem 2"),
+              value: "2.Sınıf - 2.Dönem",
+              child: Text("2.Sınıf - 2.Dönem"),
             ),
             DropdownMenuItem(
-              value: "3.Sınıf - Dönem 1",
-              child: Text("3.Sınıf - Dönem 1"),
+              value: "3.Sınıf - 1.Dönem",
+              child: Text("3.Sınıf - 1.Dönem"),
             ),
             DropdownMenuItem(
-              value: "3.Sınıf - Dönem 2",
-              child: Text("3.Sınıf - Dönem 2"),
+              value: "3.Sınıf - 2.Dönem",
+              child: Text("3.Sınıf - 2.Dönem"),
             ),
             DropdownMenuItem(
-              value: "4.Sınıf - Dönem 1",
-              child: Text("4.Sınıf - Dönem 1"),
+              value: "4.Sınıf - 1.Dönem",
+              child: Text("4.Sınıf - 1.Dönem"),
             ),
             DropdownMenuItem(
-              value: "4.Sınıf - Dönem 2",
-              child: Text("4.Sınıf - Dönem 2"),
+              value: "4.Sınıf - 2.Dönem",
+              child: Text("4.Sınıf - 2.Dönem"),
             ),
           ],
           onChanged: onTermSelected,

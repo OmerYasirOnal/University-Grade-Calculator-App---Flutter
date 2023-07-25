@@ -1,6 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:grade_calculator/constants/constants.dart';
+
+import '../../crudOperations/crud_operations.dart';
+import '../../view/lessonGradeCalculator_Page.dart';
+import 'myCalculatorButtonWidget.dart';
 
 class MyHistoryGradesWidget extends StatelessWidget {
   const MyHistoryGradesWidget({
@@ -31,13 +37,19 @@ class MyHistoryGradesWidget extends StatelessWidget {
                 columns: <DataColumn>[
                   DataColumn(
                     label: Text(
-                      'Term',
+                      'Dönem',
                       style: kTableHeaderTextStyle,
                     ),
                   ),
                   DataColumn(
                     label: Text(
-                      'Average',
+                      'Ortalama',
+                      style: kTableHeaderTextStyle,
+                    ),
+                  ),
+                  DataColumn(
+                    label: Text(
+                      'İşlemler',
                       style: kTableHeaderTextStyle,
                     ),
                   ),
@@ -46,15 +58,47 @@ class MyHistoryGradesWidget extends StatelessWidget {
                   return DataRow(
                     cells: <DataCell>[
                       DataCell(
-                        Text(
-                          entry.key,
-                          style: kTableTextStyle,
+                        Center(
+                          child: Text(
+                            entry.key,
+                            style: kTableTextStyle,
+                          ),
                         ),
                       ),
                       DataCell(
-                        Text(
-                          entry.value.toString(),
-                          style: kTableTextStyle,
+                        Center(
+                          child: Text(
+                            entry.value.toString(),
+                            style: kTableTextStyle,
+                          ),
+                        ),
+                      ),
+                      DataCell(
+                        Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Expanded(
+                                child: IconButton(
+                                  icon: Icon(Icons.edit),
+                                  onPressed: () {
+                                    Get.to(() => LessonGradeCalculator(
+                                          selectedTerm: entry.key,
+                                          uid: uid,
+                                        ));
+                                  },
+                                ),
+                              ),
+                              Expanded(
+                                child: IconButton(
+                                  icon: Icon(Icons.delete),
+                                  onPressed: () async {
+                                    await deleteUserGrade(uid!, entry.key);
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

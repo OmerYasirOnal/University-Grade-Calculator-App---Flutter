@@ -3,54 +3,48 @@ import 'package:flutter/material.dart';
 TextStyle kMetinStily = const TextStyle(
   fontFamily: 'Roboto',
   color: Colors.black,
-  fontSize: 25,
+  fontSize: 18, // Updated fontSize
   fontWeight: FontWeight.bold,
 );
 
 TextStyle kSayiStily = TextStyle(
   color: Colors.black,
-  fontSize: 20,
+  fontSize: 18, // Updated fontSize
   fontWeight: FontWeight.bold,
   letterSpacing: 2,
   shadows: [
     Shadow(
-      color: Colors.grey.withOpacity(0.5),
-      blurRadius: 2,
+      color: Colors.grey.withOpacity(0.3), // Updated opacity
+      blurRadius: 1, // Updated blurRadius
       offset: Offset(1, 1),
     ),
   ],
 );
 
-TextStyle kGradesStily = TextStyle(
+TextStyle kGradeStily = TextStyle(
   color: Colors.black,
-  fontSize: 18,
+  fontSize: 16, // Updated fontSize
   fontWeight: FontWeight.w500,
   letterSpacing: 1.5,
   shadows: [
     Shadow(
-      color: Colors.grey.withOpacity(0.5),
-      blurRadius: 3,
+      color: Colors.grey.withOpacity(0.3), // Updated opacity
+      blurRadius: 2, // Updated blurRadius
       offset: const Offset(0, 2),
     ),
   ],
 );
 
-TextStyle kGradeStily = const TextStyle(
-  color: Colors.black38,
-  fontSize: 15,
-  fontWeight: FontWeight.w900,
-);
-
 BoxDecoration MyBoxDecoration() {
   return BoxDecoration(
-      color: Colors.blue,
+      color: Colors.blue.shade200, // Updated color
       borderRadius: BorderRadius.circular(30),
       boxShadow: [
         BoxShadow(
-            spreadRadius: 3,
-            blurRadius: 10,
+            spreadRadius: 1, // Updated spreadRadius
+            blurRadius: 5, // Updated blurRadius
             offset: const Offset(1, 1),
-            color: Colors.grey.withOpacity(0.3))
+            color: Colors.grey.withOpacity(0.2)) // Updated opacity
       ]);
 }
 
@@ -60,10 +54,10 @@ BoxDecoration MyDecoration() {
       borderRadius: BorderRadius.circular(30),
       boxShadow: [
         BoxShadow(
-            spreadRadius: 3,
-            blurRadius: 10,
+            spreadRadius: 1, // Updated spreadRadius
+            blurRadius: 5, // Updated blurRadius
             offset: const Offset(1, 1),
-            color: Colors.grey.withOpacity(0.3))
+            color: Colors.grey.withOpacity(0.2)) // Updated opacity
       ]);
 }
 
@@ -74,9 +68,9 @@ class kMyDecoration extends BoxDecoration {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 5,
+              color: Colors.grey.withOpacity(0.3), // Updated opacity
+              spreadRadius: 1, // Updated spreadRadius
+              blurRadius: 3, // Updated blurRadius
               offset: const Offset(0, 3),
             ),
           ],
@@ -85,12 +79,12 @@ class kMyDecoration extends BoxDecoration {
 
 const kTableTextStyle = TextStyle(
   color: Colors.black,
-  fontSize: 16.0,
+  fontSize: 14.0, // Updated fontSize
   fontWeight: FontWeight.normal,
 );
 
 const kTableHeaderTextStyle = TextStyle(
-  fontSize: 16,
+  fontSize: 14, // Updated fontSize
   fontWeight: FontWeight.bold,
   color: Colors.grey,
 );
