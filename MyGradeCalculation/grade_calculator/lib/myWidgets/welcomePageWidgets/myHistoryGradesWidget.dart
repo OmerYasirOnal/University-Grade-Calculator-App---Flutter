@@ -6,7 +6,6 @@ import 'package:grade_calculator/constants/constants.dart';
 
 import '../../crudOperations/crud_operations.dart';
 import '../../view/lessonGradeCalculator_Page.dart';
-import 'myCalculatorButtonWidget.dart';
 
 class MyHistoryGradesWidget extends StatelessWidget {
   const MyHistoryGradesWidget({
@@ -18,104 +17,83 @@ class MyHistoryGradesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: StreamBuilder<DocumentSnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('Users')
-            .doc('$uid')
-            .snapshots(),
-        builder: (BuildContext context,
-            AsyncSnapshot<DocumentSnapshot> asyncSnapshot) {
-          if (asyncSnapshot.hasData &&
-              asyncSnapshot.data != null &&
-              asyncSnapshot.data!.exists) {
-            Map<String, dynamic> data =
-                asyncSnapshot.data!.data() as Map<String, dynamic>;
-            return SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: DataTable(
-                columns: <DataColumn>[
-                  DataColumn(
-                    label: Text(
-                      'Dönem',
-                      style: kTableHeaderTextStyle,
-                    ),
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('Users')
+          .doc('$uid')
+          .collection('Terms')
+          .snapshots(),
+      builder:
+          (BuildContext context, AsyncSnapshot<QuerySnapshot> asyncSnapshot) {
+        if (asyncSnapshot.hasData &&
+            asyncSnapshot.data != null &&
+            asyncSnapshot.data!.docs.isNotEmpty) {
+          return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: DataTable(
+              columns: <DataColumn>[
+                DataColumn(
+                  label: Text(
+                    'Dönem',
+                    style: kTableHeaderTextStyle,
                   ),
-                  DataColumn(
-                    label: Text(
-                      'Ortalama',
-                      style: kTableHeaderTextStyle,
-                    ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Ortalama',
+                    style: kTableHeaderTextStyle,
                   ),
-                  DataColumn(
-                    label: Text(
-                      'İşlemler',
-                      style: kTableHeaderTextStyle,
-                    ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'İşlemler',
+                    style: kTableHeaderTextStyle,
                   ),
-                ],
-                rows: data.entries.map<DataRow>((entry) {
-                  return DataRow(
-                    cells: <DataCell>[
-                      DataCell(
-                        Center(
-                          child: Text(
-                            entry.key,
-                            style: kTableTextStyle,
-                          ),
+                ),
+              ],
+              rows: asyncSnapshot.data!.docs.map<DataRow>((doc) {
+                return DataRow(
+                  cells: <DataCell>[
+                    DataCell(
+                      Center(
+                        child: Text(
+                          doc.id,
+                          style: kTableTextStyle,
                         ),
                       ),
-                      DataCell(
-                        Center(
-                          child: Text(
-                            entry.value.toString(),
-                            style: kTableTextStyle,
-                          ),
+                    ),
+                    DataCell(
+                      Center(
+                        child: Text(
+                          doc['grade'].toString(),
+                          style: kTableTextStyle,
                         ),
                       ),
-                      DataCell(
-                        Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Expanded(
-                                child: IconButton(
-                                  icon: Icon(Icons.edit),
-                                  onPressed: () {
-                                    Get.to(() => LessonGradeCalculator(
-                                          selectedTerm: entry.key,
-                                          uid: uid,
-                                        ));
-                                  },
-                                ),
-                              ),
-                              Expanded(
-                                child: IconButton(
-                                  icon: Icon(Icons.delete),
-                                  onPressed: () async {
-                                    await deleteUserGrade(uid!, entry.key);
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
+                    ),
+                    DataCell(
+                      Center(
+                        child: IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () async {
+                            await deleteUserGrade(uid!, doc.id);
+                          },
                         ),
                       ),
-                    ],
-                  );
-                }).toList(),
-              ),
-            );
-          } else if (asyncSnapshot.hasError) {
-            return Text('Error: ${asyncSnapshot.error}');
-          } else {
-            return const Text(
-              'Henüz Hiç Not Bilgisi Eklenmedi.',
-              style: TextStyle(fontSize: 20),
-            );
-          }
-        },
-      ),
+                    ),
+                  ],
+                );
+              }).toList(),
+            ),
+          );
+        } else if (asyncSnapshot.hasError) {
+          return Text('Error: ${asyncSnapshot.error}');
+        } else {
+          return const Text(
+            'Henüz Hiç Not Bilgisi Eklenmedi.',
+            style: TextStyle(fontSize: 20),
+          );
+        }
+      },
     );
   }
 }

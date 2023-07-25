@@ -13,10 +13,10 @@ class WelcomePage extends StatefulWidget {
   String email;
 
   WelcomePage({
-    super.key,
+    Key? key,
     required this.uid,
     required this.email,
-  });
+  }) : super(key: key);
 
   @override
   _WelcomePageState createState() => _WelcomePageState();
@@ -44,19 +44,28 @@ class _WelcomePageState extends State<WelcomePage> {
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            welcomePageWidget(email: widget.email, uid: widget.uid),
+            welcomePageWidget(uid: widget.uid),
             const SizedBox(
               height: 30,
             ),
             myCalculatorButtonWidget(
                 selectedTerm: _selectedTerm, widget: widget),
+            SizedBox(
+              height: 10,
+            ),
             MyTermDropDownButton(),
             const SizedBox(
-              height: 1,
+              height: 20,
             ),
-            MyHistoryGradesWidget(uid: uid),
+            Expanded(
+              child: MyHistoryGradesWidget(uid: uid),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             const MyExitButton(),
           ],
         ),
@@ -64,11 +73,16 @@ class _WelcomePageState extends State<WelcomePage> {
     );
   }
 
-  Row MyTermDropDownButton() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        DropdownButton(
+  Widget MyTermDropDownButton() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 40),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.deepPurple, width: 2),
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton(
           style: kGradeStily,
           hint: const Text("Sınıf ve Dönem Seçiniz"),
           value: _selectedTerm,
@@ -108,7 +122,7 @@ class _WelcomePageState extends State<WelcomePage> {
           ],
           onChanged: onTermSelected,
         ),
-      ],
+      ),
     );
   }
 }

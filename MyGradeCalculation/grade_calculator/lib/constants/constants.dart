@@ -37,7 +37,7 @@ TextStyle kGradeStily = TextStyle(
 
 BoxDecoration MyBoxDecoration() {
   return BoxDecoration(
-      color: Colors.blue.shade200, // Updated color
+      color: Colors.lightBlueAccent, // Updated color
       borderRadius: BorderRadius.circular(30),
       boxShadow: [
         BoxShadow(

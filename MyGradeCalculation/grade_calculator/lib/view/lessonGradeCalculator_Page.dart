@@ -27,24 +27,24 @@ class LessonGradeCalculator extends StatefulWidget {
 }
 
 Future<void> deleteUserGrade(String uid, String term) async {
-  final DocumentReference userDoc =
-      FirebaseFirestore.instance.collection('Users').doc(uid);
+  final CollectionReference termCollection = FirebaseFirestore.instance
+      .collection('Users')
+      .doc(uid)
+      .collection('Terms');
 
-  await userDoc.delete();
+  await termCollection.doc(term).delete();
 }
 
 Future<void> updateUserData(String uid, String term, double average) async {
-  final DocumentReference userDoc =
-      FirebaseFirestore.instance.collection('Users').doc(uid);
+  final CollectionReference termCollection = FirebaseFirestore.instance
+      .collection('Users')
+      .doc(uid)
+      .collection('Terms');
 
   String formattedAverage =
       average.toStringAsFixed(2); // limit to 2 decimal places
 
-  Map<String, dynamic> userData = {
-    term: formattedAverage,
-  };
-
-  await userDoc.set(userData, SetOptions(merge: true));
+  await termCollection.doc(term).set({'grade': formattedAverage});
 }
 
 class _LessonGradeCalculatorState extends State<LessonGradeCalculator> {
