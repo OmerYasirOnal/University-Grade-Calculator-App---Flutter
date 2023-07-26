@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:grade_calculator/constants/constants.dart';
 
+import '../../NavBar.dart';
 import '../../crudOperations/crud_operations.dart';
 import '../../myWidgets/welcomePageWidgets/myCalculatorButtonWidget.dart';
 import '../../myWidgets/welcomePageWidgets/myExitButtonWidget.dart';
@@ -38,36 +39,30 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
         title: const Text("Ana Sayfa"),
       ),
       body: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            welcomePageWidget(uid: widget.uid),
-            const SizedBox(
-              height: 30,
-            ),
-            myCalculatorButtonWidget(
-                selectedTerm: _selectedTerm, widget: widget),
-            SizedBox(
-              height: 10,
-            ),
-            MyTermDropDownButton(),
-            const SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              child: MyHistoryGradesWidget(uid: uid),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const MyExitButton(),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              MyHistoryGradesWidget(uid: uid),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: MyTermDropDownButton(),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: myCalculatorButtonWidget(
+                    selectedTerm: _selectedTerm, widget: widget),
+              ),
+            ],
+          ),
         ),
       ),
     );

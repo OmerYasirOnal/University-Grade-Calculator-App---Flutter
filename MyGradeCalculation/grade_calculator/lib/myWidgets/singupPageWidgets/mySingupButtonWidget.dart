@@ -7,17 +7,19 @@ class mySingupButtonWidget extends StatelessWidget {
     super.key,
     required this.emailController,
     required this.passwordController,
+    required this.userNameController,
   });
 
   final TextEditingController emailController;
   final TextEditingController passwordController;
+  final TextEditingController userNameController;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        AuthController.instance.register(
-            emailController.text.trim(), passwordController.text.trim());
+        AuthController.instance.register(emailController.text.trim(),
+            passwordController.text.trim(), userNameController.text.trim());
       },
       child: Container(
         width: 200,

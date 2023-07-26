@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grade_calculator/myWidgets/loginPageWidgets/myEmailInputWidget.dart';
 import 'package:grade_calculator/myWidgets/loginPageWidgets/myPasswordWidget.dart';
+import 'package:grade_calculator/myWidgets/singupPageWidgets/UserNameField.dart';
 
 import '../../myWidgets/singupPageWidgets/mySingupButtonWidget.dart';
 import 'login_page.dart';
 
 class SignupPage extends StatelessWidget {
-  const SignupPage({super.key});
+  const SignupPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
-
+    var userNameController = TextEditingController();
     final formKey = GlobalKey<FormState>();
 
     return Scaffold(
@@ -34,22 +35,27 @@ class SignupPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 20,
               ),
-              myEmailInputWidget(emailController: emailController),
-              const SizedBox(
-                height: 20,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: myEmailInputWidget(emailController: emailController),
               ),
-              myPasswordWidget(passwordController: passwordController),
-              const SizedBox(
-                height: 20,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: UserNameField(userNameController: userNameController),
               ),
-              mySingupButtonWidget(
-                  emailController: emailController,
-                  passwordController: passwordController),
-              const SizedBox(
-                height: 10,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: myPasswordWidget(passwordController: passwordController),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: mySingupButtonWidget(
+                    emailController: emailController,
+                    passwordController: passwordController,
+                    userNameController: userNameController),
               ),
               RichText(
                 text: TextSpan(

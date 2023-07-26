@@ -29,7 +29,7 @@ class MyHistoryGradesWidget extends StatelessWidget {
             asyncSnapshot.data != null &&
             asyncSnapshot.data!.docs.isNotEmpty) {
           return SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
+            scrollDirection: Axis.vertical,
             child: DataTable(
               columns: <DataColumn>[
                 DataColumn(

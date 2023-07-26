@@ -33,14 +33,21 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> register(String email, String password) async {
+  Future<void> register(
+    String email,
+    String password,
+    String userName,
+  ) async {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
 
       final String? uid = auth.currentUser?.uid;
 
-      await FirebaseFirestore.instance.collection('Users').doc(uid).set({});
+      // 'Users' koleksiyonundaki belgeliği 'userName' ile güncelleyin.
+      await FirebaseFirestore.instance.collection('Users').doc(uid).set({
+        'userName': userName,
+      });
 
       Get.snackbar(
         "About User",

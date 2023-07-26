@@ -40,11 +40,14 @@ dependencies:
   get: ^4.6.5
   firebase_storage: ^11.0.15
   cloud_firestore: ^4.4.3
+  horizontal_picker: ^1.2.0
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  horizontal_picker: any
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
