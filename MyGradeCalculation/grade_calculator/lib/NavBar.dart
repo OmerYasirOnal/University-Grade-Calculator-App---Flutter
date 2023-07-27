@@ -1,12 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:grade_calculator/view/ProfileScreen.dart';
 import 'package:grade_calculator/view/authPages/login_page.dart';
 
 class NavBar extends StatelessWidget {
-  final String name;
-  final String email;
+  String name = "";
+  String email = "";
 
   NavBar(this.name, this.email, {Key? key}) : super(key: key);
 
@@ -23,10 +25,10 @@ class NavBar extends StatelessWidget {
             child: UserAccountsDrawerHeader(
               decoration: BoxDecoration(color: Colors.green),
               accountName: Text(
-                name,
+                " $name ",
                 style: TextStyle(fontSize: 18),
               ),
-              accountEmail: Text(email),
+              accountEmail: Text(" $email "),
               currentAccountPictureSize: Size.square(50),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Color.fromARGB(255, 165, 255, 137),
@@ -41,15 +43,13 @@ class NavBar extends StatelessWidget {
             leading: const Icon(Icons.person),
             title: const Text(' Profil'),
             onTap: () {
-              Navigator.pop(context);
+              Get.to(() => ProfileScreen(name, email));
             },
           ),
           ListTile(
             leading: const Icon(Icons.book),
             title: const Text(' My Course '),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () {},
           ),
 
           ListTile(
@@ -64,6 +64,7 @@ class NavBar extends StatelessWidget {
             title: const Text(' Çıkış Yap '),
             onTap: () {
               Get.to(() => const LoginPage());
+              FirebaseAuth.instance.signOut();
             },
           ),
         ],

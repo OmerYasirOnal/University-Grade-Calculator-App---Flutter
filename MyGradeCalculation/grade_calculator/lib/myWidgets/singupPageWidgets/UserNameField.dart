@@ -23,7 +23,7 @@ class UserNameField extends StatelessWidget {
         decoration: InputDecoration(
           hintText: 'Kullanıcı Adı',
           prefixIcon: const Icon(
-            Icons.email_outlined,
+            Icons.person,
             color: Colors.blue,
           ),
           focusedBorder: OutlineInputBorder(
