@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:grade_calculator/view/authPages/login_page.dart';
 
 class NavBar extends StatelessWidget {
-  const NavBar({super.key});
+  final String name;
+  final String email;
+
+  NavBar(this.name, this.email, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,26 +16,26 @@ class NavBar extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.all(0),
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
+          DrawerHeader(
+            decoration: const BoxDecoration(
               color: Colors.green,
             ), //BoxDecoration
             child: UserAccountsDrawerHeader(
               decoration: BoxDecoration(color: Colors.green),
               accountName: Text(
-                "Abhishek Mishra",
+                name,
                 style: TextStyle(fontSize: 18),
               ),
-              accountEmail: Text("abhishekm977@gmail.com"),
+              accountEmail: Text(email),
               currentAccountPictureSize: Size.square(50),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Color.fromARGB(255, 165, 255, 137),
                 child: Text(
-                  "A",
+                  name[0],
                   style: TextStyle(fontSize: 30.0, color: Colors.blue),
                 ), //Text
               ), //circleAvatar
-            ), //UserAccountDrawerHeader
+            ), //UserAccountsDrawerHeader
           ), //DrawerHeader
           ListTile(
             leading: const Icon(Icons.person),

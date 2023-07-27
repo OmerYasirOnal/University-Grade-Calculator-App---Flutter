@@ -23,8 +23,6 @@ class WelcomePage extends StatefulWidget {
   _WelcomePageState createState() => _WelcomePageState();
 }
 
-CollectionReference users = Crudoperations().firestore.collection('Users');
-
 class _WelcomePageState extends State<WelcomePage> {
   double average = 0;
   String? _selectedTerm;
@@ -36,36 +34,54 @@ class _WelcomePageState extends State<WelcomePage> {
     });
   }
 
+  Future<String> fetchUserName() async {
+    final docSnap =
+        await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+    if (docSnap.exists) {
+      return docSnap.get('userName');
+    }
+    return '';
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: NavBar(),
-      appBar: AppBar(
-        title: const Text("Ana Sayfa"),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              MyHistoryGradesWidget(uid: uid),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: MyTermDropDownButton(),
+    return FutureBuilder<String>(
+        future: fetchUserName(),
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          } else {
+            final userName = snapshot.data ?? '';
+            return Scaffold(
+              drawer: NavBar(userName, widget.email),
+              appBar: AppBar(
+                title: const Text("Ana Sayfa"),
               ),
-              Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: myCalculatorButtonWidget(
-                    selectedTerm: _selectedTerm, widget: widget),
+              body: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      MyHistoryGradesWidget(uid: uid),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: MyTermDropDownButton(),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: myCalculatorButtonWidget(
+                            selectedTerm: _selectedTerm, widget: widget),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ],
-          ),
-        ),
-      ),
-    );
+            );
+          }
+        });
   }
 
   Widget MyTermDropDownButton() {
