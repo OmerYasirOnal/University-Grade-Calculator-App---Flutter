@@ -11,8 +11,9 @@ import 'calculation_page.dart';
 class LessonGrade {
   String? name;
   double? grade;
+  double weight; // Dersin ağırlığını tutar
 
-  LessonGrade(this.name, this.grade);
+  LessonGrade(this.name, this.grade, this.weight);
 }
 
 class LessonGradeCalculator extends StatefulWidget {
@@ -64,20 +65,23 @@ class _LessonGradeCalculatorState extends State<LessonGradeCalculator> {
   double _average = 0.0;
 
   int numberOfLessons = 1;
-  List<LessonGrade> lessonGrades = [LessonGrade('', 0.0)];
+  List<LessonGrade> lessonGrades = [
+    LessonGrade('', 0.0, 1.0)
+  ]; // initial weight is set to 1
 
   void calculateCourseGrade(int index) async {
     LessonGrade lessonGrade = lessonGrades[index];
     double newGrade = await Get.to(() => const CourseGradeCalculator());
     setState(() {
-      lessonGrades[index] = LessonGrade(lessonGrade.name, newGrade);
+      lessonGrades[index] =
+          LessonGrade(lessonGrade.name, newGrade, lessonGrade.weight);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    _average =
-        _calculateTotal.calculateAverageOfGrade(numberOfLessons, lessonGrades);
+    _average = _calculateTotal.calculateAverageOfGrade(numberOfLessons,
+        lessonGrades); // your method will need to be adjusted to take weights into account
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ders Notunu Hesaplama'),
@@ -104,13 +108,15 @@ class _LessonGradeCalculatorState extends State<LessonGradeCalculator> {
                 setState(() {
                   numberOfLessons = value!;
                   lessonGrades = List.generate(
-                      numberOfLessons, (index) => LessonGrade('', 0.0));
+                      numberOfLessons,
+                      (index) =>
+                          LessonGrade('', 0.0, 1.0)); // default weight is 1
                 });
               },
             ),
             const SizedBox(height: 16.0),
             const Text(
-              'Ders adını gir ve notları hesapla: ',
+              'Ders adını ve ağırlığını gir, sonra notları hesapla: ',
               style: TextStyle(fontSize: 16.0),
             ),
             const SizedBox(height: 8.0),
@@ -128,6 +134,21 @@ class _LessonGradeCalculatorState extends State<LessonGradeCalculator> {
                             onChanged: (value) {
                               lessonGrades[index].name = value;
                             },
+                          ),
+                        ),
+                        const SizedBox(width: 8.0),
+                        Expanded(
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: 'Ders Ağırlığı',
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                lessonGrades[index].weight =
+                                    double.parse(value);
+                              });
+                            },
+                            keyboardType: TextInputType.number,
                           ),
                         ),
                         const SizedBox(width: 8.0),
@@ -162,7 +183,8 @@ class _LessonGradeCalculatorState extends State<LessonGradeCalculator> {
                   final letterGrade = _calculateTotal.getLetterGrade(grade!);
                   final score = _calculateTotal.getScore(letterGrade);
                   final status = _calculateTotal.getStatus(letterGrade);
-
+                  final credit = _calculateTotal.getCredits(
+                      score, lessonGrades[index].weight);
                   return Row(
                     children: [
                       Expanded(
@@ -173,10 +195,12 @@ class _LessonGradeCalculatorState extends State<LessonGradeCalculator> {
                       ),
                       const SizedBox(width: 10.0),
                       myStatWidget(
-                          grade: grade,
-                          letterGrade: letterGrade,
-                          score: score,
-                          status: status),
+                        grade: grade,
+                        letterGrade: letterGrade,
+                        score: score,
+                        status: status,
+                        credit: credit,
+                      ),
                     ],
                   );
                 },

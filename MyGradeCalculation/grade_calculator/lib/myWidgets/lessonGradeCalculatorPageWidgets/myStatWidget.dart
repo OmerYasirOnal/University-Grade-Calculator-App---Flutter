@@ -7,12 +7,14 @@ class myStatWidget extends StatelessWidget {
     required this.letterGrade,
     required this.score,
     required this.status,
+    required this.credit,
   });
 
   final double? grade;
   final String letterGrade;
   final double score;
   final String status;
+  final double credit;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class myStatWidget extends StatelessWidget {
             style: const TextStyle(fontSize: 16.0),
           ),
           Text(
-            '$letterGrade / $score / $status',
+            '$letterGrade / $score /  $credit / $status',
             style: const TextStyle(fontSize: 12.0),
           ),
         ],

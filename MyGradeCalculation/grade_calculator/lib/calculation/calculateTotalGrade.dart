@@ -1,3 +1,5 @@
+import '../view/lessonGradeCalculator_Page.dart';
+
 class CalculateTotal {
   String getLetterGrade(double grade) {
     if (grade >= 90) {
@@ -19,6 +21,14 @@ class CalculateTotal {
     } else {
       return 'FF';
     }
+  }
+
+  double getCredits(double grade, double weight) {
+    double credit = 0.0;
+
+    credit = grade * weight;
+
+    return credit;
   }
 
   double getScore(String letterGrade) {
@@ -43,13 +53,17 @@ class CalculateTotal {
     }
   }
 
-  double calculateAverageOfGrade(numberOfLessons, lessonGrades) {
-    double sum = 0;
+  double calculateAverageOfGrade(
+      numberOfLessons, List<LessonGrade> lessonGrades) {
+    double weightedSum = 0;
+    double totalWeight = 0;
 
-    for (int i = 0; i < numberOfLessons; i++) {
-      sum += getScore(getLetterGrade(lessonGrades[i].grade));
+    for (var lessonGrade in lessonGrades) {
+      double score = getScore(getLetterGrade(lessonGrade.grade!));
+      weightedSum += score * lessonGrade.weight!;
+      totalWeight += lessonGrade.weight!;
     }
-    return sum / numberOfLessons;
+    return totalWeight > 0 ? weightedSum / totalWeight : 0;
   }
 
   String getStatus(String letterGrade) {

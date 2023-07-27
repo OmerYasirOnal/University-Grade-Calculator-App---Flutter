@@ -51,32 +51,33 @@ class _WelcomePageState extends State<WelcomePage> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();
           } else {
-            final userName = snapshot.data ?? '';
+            final userName = snapshot.data ?? 'no name';
             return Scaffold(
               drawer: NavBar(userName, widget.email),
               appBar: AppBar(
                 title: const Text("Ana Sayfa"),
               ),
               body: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      MyHistoryGradesWidget(uid: uid),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: MyTermDropDownButton(),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: MyHistoryGradesWidget(uid: uid),
+                        ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(18.0),
-                        child: myCalculatorButtonWidget(
-                            selectedTerm: _selectedTerm, widget: widget),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: MyTermDropDownButton(),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: myCalculatorButtonWidget(
+                          selectedTerm: _selectedTerm, widget: widget),
+                    ),
+                  ],
                 ),
               ),
             );

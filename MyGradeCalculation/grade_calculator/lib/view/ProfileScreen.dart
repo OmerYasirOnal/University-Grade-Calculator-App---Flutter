@@ -56,8 +56,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text("$name", style: Theme.of(context).textTheme.headline4),
-              Text("$email",
-                  style: Theme.of(context).textTheme.bodyText2),
+              Text("$email", style: Theme.of(context).textTheme.bodyText2),
               const SizedBox(height: 20),
 
               /// -- BUTTON
@@ -70,7 +69,7 @@ class ProfileScreen extends StatelessWidget {
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: const Text("tEditProfile",
-                      style: TextStyle(color: Colors.amber)),
+                      style: TextStyle(color: Colors.black)),
                 ),
               ),
               const SizedBox(height: 30),
@@ -80,20 +79,10 @@ class ProfileScreen extends StatelessWidget {
               /// -- MENU
               ProfileMenuWidget(
                   title: "Settings", icon: Icons.abc_outlined, onPress: () {}),
-              ProfileMenuWidget(
-                  title: "Billing Details",
-                  icon: Icons.abc_outlined,
-                  onPress: () {}),
-              ProfileMenuWidget(
-                  title: "User Management",
-                  icon: Icons.abc_outlined,
-                  onPress: () {}),
+
               const Divider(),
               const SizedBox(height: 10),
-              ProfileMenuWidget(
-                  title: "Information",
-                  icon: Icons.abc_outlined,
-                  onPress: () {}),
+
               ProfileMenuWidget(
                   title: "Logout",
                   icon: Icons.abc_outlined,
