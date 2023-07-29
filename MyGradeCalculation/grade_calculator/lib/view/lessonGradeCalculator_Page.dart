@@ -62,8 +62,6 @@ class _LessonGradeCalculatorState extends State<LessonGradeCalculator> {
   final CalculateTotal _calculateTotal = CalculateTotal();
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  double _average = 0.0;
-
   int numberOfLessons = 1;
   List<LessonGrade> lessonGrades = [
     LessonGrade('', 0.0, 1.0)
@@ -80,8 +78,17 @@ class _LessonGradeCalculatorState extends State<LessonGradeCalculator> {
 
   @override
   Widget build(BuildContext context) {
-    _average = _calculateTotal.calculateAverageOfGrade(numberOfLessons,
-        lessonGrades); // your method will need to be adjusted to take weights into account
+    double _average = 0.0;
+    double totalCredit = 0;
+
+    _average = _calculateTotal.calculateSemesterAverage(lessonGrades);
+    // Calculate totalCredit
+    for (var grade in lessonGrades) {
+      final score = _calculateTotal
+          .getScore(_calculateTotal.getLetterGrade(grade.grade!));
+      totalCredit += _calculateTotal.getCredits(score, grade.weight);
+    }
+    // your method will need to be adjusted to take weights into account
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ders Notunu Hesaplama'),
@@ -132,7 +139,9 @@ class _LessonGradeCalculatorState extends State<LessonGradeCalculator> {
                               hintText: 'Ders Adı',
                             ),
                             onChanged: (value) {
-                              lessonGrades[index].name = value;
+                              setState(() {
+                                lessonGrades[index].name = value;
+                              });
                             },
                           ),
                         ),
@@ -185,6 +194,7 @@ class _LessonGradeCalculatorState extends State<LessonGradeCalculator> {
                   final status = _calculateTotal.getStatus(letterGrade);
                   final credit = _calculateTotal.getCredits(
                       score, lessonGrades[index].weight);
+
                   return Row(
                     children: [
                       Expanded(
@@ -206,7 +216,10 @@ class _LessonGradeCalculatorState extends State<LessonGradeCalculator> {
                 },
               ),
             ),
-            myGradesAverageWidget(average: _average),
+            myGradesAverageWidget(
+              average: _average,
+              credit: totalCredit,
+            ),
             myRecordButtonWidget(
                 uid: uid, selectedTerm: _selectedTerm, average: _average),
           ],

@@ -2,12 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:grade_calculator/constants/constants.dart';
 
-import '../../NavBar.dart';
-import '../../crudOperations/crud_operations.dart';
-import '../../myWidgets/welcomePageWidgets/myCalculatorButtonWidget.dart';
-import '../../myWidgets/welcomePageWidgets/myExitButtonWidget.dart';
-import '../../myWidgets/welcomePageWidgets/myHistoryGradesWidget.dart';
-import '../../myWidgets/welcomePageWidgets/myWelcomePageWidget.dart';
+import '../NavBar.dart';
+import '../myWidgets/welcomePageWidgets/myCalculatorButtonWidget.dart';
+import '../myWidgets/welcomePageWidgets/myHistoryGradesWidget.dart';
 
 class WelcomePage extends StatefulWidget {
   String uid;
@@ -60,6 +57,11 @@ class _WelcomePageState extends State<WelcomePage> {
               body: SafeArea(
                 child: Column(
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text("Geçmiş Dönemler",
+                          style: TextStyle(fontSize: 20)),
+                    ),
                     Expanded(
                       child: SingleChildScrollView(
                         child: Padding(

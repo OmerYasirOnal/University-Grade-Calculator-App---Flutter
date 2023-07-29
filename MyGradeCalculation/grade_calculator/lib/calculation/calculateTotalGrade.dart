@@ -66,6 +66,22 @@ class CalculateTotal {
     return totalWeight > 0 ? weightedSum / totalWeight : 0;
   }
 
+  double calculateSemesterAverage(List<LessonGrade> lessonGrades) {
+    double totalGradePoints = 0.0; // toplam not puanları
+    double totalCredits = 0.0; // toplam kredi saatler
+
+    for (var grade in lessonGrades) {
+      totalGradePoints += getScore(getLetterGrade(grade.grade!)) *
+          grade.weight; // not puanı = not * kredi saati
+      totalCredits += grade.weight; // toplam kredi saatlerini güncelle
+    }
+
+    // dönem ortalaması = toplam not puanları / toplam kredi saatler
+    double semesterAverage = totalGradePoints / totalCredits;
+
+    return semesterAverage;
+  }
+
   String getStatus(String letterGrade) {
     if (letterGrade == 'AA' ||
         letterGrade == 'BA' ||

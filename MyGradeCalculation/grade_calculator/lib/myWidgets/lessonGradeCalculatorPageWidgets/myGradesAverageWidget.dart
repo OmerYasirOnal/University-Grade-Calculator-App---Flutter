@@ -1,35 +1,48 @@
-import 'package:flutter/cupertino.dart';
-
-import '../../constants/constants.dart';
+import 'package:flutter/material.dart';
 
 class myGradesAverageWidget extends StatelessWidget {
-  myGradesAverageWidget({
-    super.key,
-    required double average,
-  }) : _average = average;
+  final double average;
+  final double credit;
 
-  final double _average;
+  const myGradesAverageWidget({
+    Key? key,
+    required this.average,
+    required this.credit,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final text = '$_average';
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
     return Center(
       child: Container(
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(20),
         alignment: Alignment.center,
-        width: double.infinity,
-        decoration: MyBoxDecoration(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Column(
           children: [
-            const Text(
-              'Dönem Ortalaman: ',
-              style: TextStyle(fontSize: 25.0),
+            Text('Dönem Toplam Kredi Sayısı:'),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Dönem Ağırlıklı Krediler Toplamı:${credit.toStringAsFixed(2)}',
+              ),
             ),
             Text(
-              text.length > 4 ? '${text.substring(0, 4)}..' : text,
-              style: const TextStyle(fontSize: 25.0),
-            )
+              'Dönem Ağırlıklı Not Ortalaması: ${average.toStringAsFixed(2)}',
+            ),
           ],
         ),
       ),

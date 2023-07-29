@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../view/authPages/login_page.dart';
-import '../view/authPages/welcome_page.dart';
+import '../view/welcome_page.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../view/authPages/welcome_page.dart';
+import '../../view/welcome_page.dart';
 import '../../view/lessonGradeCalculator_Page.dart';
 
 class myCalculatorButtonWidget extends StatelessWidget {
