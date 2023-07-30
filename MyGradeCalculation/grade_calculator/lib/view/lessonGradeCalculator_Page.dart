@@ -79,6 +79,7 @@ class _LessonGradeCalculatorState extends State<LessonGradeCalculator> {
   @override
   Widget build(BuildContext context) {
     double _average = 0.0;
+    double _credit = 0;
     double totalCredit = 0;
 
     _average = _calculateTotal.calculateSemesterAverage(lessonGrades);
@@ -86,7 +87,8 @@ class _LessonGradeCalculatorState extends State<LessonGradeCalculator> {
     for (var grade in lessonGrades) {
       final score = _calculateTotal
           .getScore(_calculateTotal.getLetterGrade(grade.grade!));
-      totalCredit += _calculateTotal.getCredits(score, grade.weight);
+      _credit += _calculateTotal.getCredits(score, grade.weight);
+      totalCredit += grade.weight;
     }
     // your method will need to be adjusted to take weights into account
     return Scaffold(
@@ -218,7 +220,8 @@ class _LessonGradeCalculatorState extends State<LessonGradeCalculator> {
             ),
             myGradesAverageWidget(
               average: _average,
-              credit: totalCredit,
+              credit: _credit,
+              totalCredit: totalCredit,
             ),
             myRecordButtonWidget(
                 uid: uid, selectedTerm: _selectedTerm, average: _average),

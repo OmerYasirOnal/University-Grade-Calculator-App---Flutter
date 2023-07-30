@@ -31,6 +31,14 @@ class CalculateTotal {
     return credit;
   }
 
+  double getTotalCredits(double weight) {
+    double credit = 0.0;
+
+    credit += weight;
+
+    return credit;
+  }
+
   double getScore(String letterGrade) {
     if (letterGrade == 'AA') {
       return 4.0;
@@ -60,8 +68,8 @@ class CalculateTotal {
 
     for (var lessonGrade in lessonGrades) {
       double score = getScore(getLetterGrade(lessonGrade.grade!));
-      weightedSum += score * lessonGrade.weight!;
-      totalWeight += lessonGrade.weight!;
+      weightedSum += score * lessonGrade.weight;
+      totalWeight += lessonGrade.weight;
     }
     return totalWeight > 0 ? weightedSum / totalWeight : 0;
   }

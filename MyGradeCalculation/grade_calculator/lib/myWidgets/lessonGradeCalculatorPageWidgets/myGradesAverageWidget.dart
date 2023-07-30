@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class myGradesAverageWidget extends StatelessWidget {
   final double average;
   final double credit;
+  final double totalCredit;
 
   const myGradesAverageWidget({
     Key? key,
     required this.average,
     required this.credit,
+    required this.totalCredit,
   }) : super(key: key);
 
   @override
@@ -33,11 +35,12 @@ class myGradesAverageWidget extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Text('Dönem Toplam Kredi Sayısı:'),
+            Text(
+                'Dönem Toplam Kredi Sayısı: ${totalCredit.toStringAsFixed(0)}'),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Dönem Ağırlıklı Krediler Toplamı:${credit.toStringAsFixed(2)}',
+                'Dönem Ağırlıklı Krediler Toplamı: ${credit.toStringAsFixed(0)}',
               ),
             ),
             Text(
