@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 TextStyle kMetinStily = const TextStyle(
   fontFamily: 'Roboto',
   color: Colors.black,
-  fontSize: 18, // Updated fontSize
+  fontSize: 14, // Updated fontSize
   fontWeight: FontWeight.bold,
 );
 
 TextStyle kSayiStily = TextStyle(
   color: Colors.black,
-  fontSize: 18, // Updated fontSize
+  fontSize: 14, // Updated fontSize
   fontWeight: FontWeight.bold,
   letterSpacing: 2,
   shadows: [
@@ -23,7 +23,7 @@ TextStyle kSayiStily = TextStyle(
 
 TextStyle kGradeStily = TextStyle(
   color: Colors.black,
-  fontSize: 16, // Updated fontSize
+  fontSize: 14, // Updated fontSize
   fontWeight: FontWeight.w500,
   letterSpacing: 1.5,
   shadows: [

@@ -6,21 +6,21 @@ import '../NavBar.dart';
 import '../myWidgets/welcomePageWidgets/myCalculatorButtonWidget.dart';
 import '../myWidgets/welcomePageWidgets/myHistoryGradesWidget.dart';
 
-class WelcomePage extends StatefulWidget {
+class HistoryPage extends StatefulWidget {
   String uid;
   String email;
 
-  WelcomePage({
+  HistoryPage({
     Key? key,
     required this.uid,
     required this.email,
   }) : super(key: key);
 
   @override
-  _WelcomePageState createState() => _WelcomePageState();
+  _HistoryPageState createState() => _HistoryPageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> {
+class _HistoryPageState extends State<HistoryPage> {
   double average = 0;
   String? _selectedTerm;
   String? get uid => widget.uid;

@@ -1,10 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:grade_calculator/constants/constants.dart';
 
-import '../../crudOperations/crud_operations.dart';
 import '../../view/lessonGradeCalculator_Page.dart';
 
 class MyHistoryGradesWidget extends StatelessWidget {
@@ -45,9 +42,14 @@ class MyHistoryGradesWidget extends StatelessWidget {
                   ),
                 ),
                 DataColumn(
-                  label: Text(
-                    'İşlemler',
-                    style: kTableHeaderTextStyle,
+                  label: Expanded(
+                    child: Container(
+                      child: Text(
+                        'İşlemler',
+                        textAlign: TextAlign.center,
+                        style: kTableHeaderTextStyle,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -55,12 +57,13 @@ class MyHistoryGradesWidget extends StatelessWidget {
                 return DataRow(
                   cells: <DataCell>[
                     DataCell(
-                      Center(
-                        child: Text(
-                          doc.id,
-                          style: kTableTextStyle,
-                        ),
+                      Text(
+                        doc.id,
+                        style: kTableTextStyle,
                       ),
+                      onTap: () {
+                        // Buraya tıklama sonucunda yapılacak işlemi yazabilirsiniz
+                      },
                     ),
                     DataCell(
                       Center(
@@ -69,14 +72,29 @@ class MyHistoryGradesWidget extends StatelessWidget {
                           style: kTableTextStyle,
                         ),
                       ),
+                      onTap: () {
+                        // Buraya tıklama sonucunda yapılacak işlemi yazabilirsiniz
+                      },
                     ),
                     DataCell(
                       Center(
-                        child: IconButton(
-                          icon: Icon(Icons.delete),
-                          onPressed: () async {
-                            await deleteUserGrade(uid!, doc.id);
-                          },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons
+                                  .visibility), // Bilgileri görmek için bir ikon
+                              onPressed: () {
+                                // Buraya tıklama sonucunda yapılacak işlemi yazabilirsiniz
+                              },
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.delete),
+                              onPressed: () async {
+                                await deleteUserGrade(uid!, doc.id);
+                              },
+                            ),
+                          ],
                         ),
                       ),
                     ),

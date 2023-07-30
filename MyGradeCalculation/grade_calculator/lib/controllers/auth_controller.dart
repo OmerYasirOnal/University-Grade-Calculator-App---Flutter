@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../view/authPages/login_page.dart';
-import '../view/welcome_page.dart';
+import '../view/HistoryPage.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
@@ -29,7 +29,7 @@ class AuthController extends GetxController {
       Get.offAll(() => const LoginPage());
     } else {
       Get.offAll(
-          () => WelcomePage(email: user.email.toString(), uid: user.uid));
+          () => HistoryPage(email: user.email.toString(), uid: user.uid));
     }
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../view/welcome_page.dart';
+import '../../view/HistoryPage.dart';
 import '../../view/lessonGradeCalculator_Page.dart';
 
 class myCalculatorButtonWidget extends StatelessWidget {
@@ -12,7 +12,7 @@ class myCalculatorButtonWidget extends StatelessWidget {
   }) : _selectedTerm = selectedTerm;
 
   final String? _selectedTerm;
-  final WelcomePage widget;
+  final HistoryPage widget;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,9 @@ class myCalculatorButtonWidget extends StatelessWidget {
                   ));
             },
       style: ElevatedButton.styleFrom(
-        backgroundColor: _selectedTerm == null ? Colors.grey : Color.fromARGB(255, 4, 159, 236),
+        backgroundColor: _selectedTerm == null
+            ? Colors.grey
+            : Color.fromARGB(255, 4, 159, 236),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
         ),
