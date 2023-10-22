@@ -1,11 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:grade_calculator/myWidgets/loginPageWidgets/myEmailInputWidget.dart';
-import 'package:grade_calculator/myWidgets/loginPageWidgets/myPasswordWidget.dart';
-import 'package:grade_calculator/myWidgets/singupPageWidgets/UserNameField.dart';
+import 'package:grade_calculator/Screens/authentication_screens/Components/loginPageWidgets/myEmailInputWidget.dart';
+import 'package:grade_calculator/Screens/authentication_screens/Components/loginPageWidgets/myPasswordWidget.dart';
+import 'package:grade_calculator/Screens/authentication_screens/Components/singupPageWidgets/UserNameField.dart';
+import 'package:grade_calculator/Screens/authentication_screens/Components/singupPageWidgets/mySingupButtonWidget.dart';
 
-import '../../myWidgets/singupPageWidgets/mySingupButtonWidget.dart';
 import 'login_page.dart';
 
 class SignupPage extends StatelessWidget {

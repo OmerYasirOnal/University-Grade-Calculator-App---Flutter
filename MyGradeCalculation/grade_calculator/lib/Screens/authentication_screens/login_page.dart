@@ -1,11 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:grade_calculator/view/authPages/signup_page.dart';
-
-import '../../myWidgets/loginPageWidgets/myEmailInputWidget.dart';
-import '../../myWidgets/loginPageWidgets/myLoginButtonWidget.dart';
-import '../../myWidgets/loginPageWidgets/myPasswordWidget.dart';
+import 'package:grade_calculator/Screens/authentication_screens/Components/loginPageWidgets/myEmailInputWidget.dart';
+import 'package:grade_calculator/Screens/authentication_screens/Components/loginPageWidgets/myLoginButtonWidget.dart';
+import 'package:grade_calculator/Screens/authentication_screens/Components/loginPageWidgets/myPasswordWidget.dart';
+import 'package:grade_calculator/Screens/authentication_screens/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

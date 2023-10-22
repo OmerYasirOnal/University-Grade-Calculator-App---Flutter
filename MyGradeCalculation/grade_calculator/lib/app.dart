@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:grade_calculator/view/authPages/login_page.dart';
+import 'package:grade_calculator/Screens/authentication_screens/login_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -19,6 +19,7 @@ class App extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
         },
+        future: null,
       ),
       debugShowCheckedModeBanner: false,
     );

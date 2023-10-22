@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:grade_calculator/NavBar.dart';
 import 'package:grade_calculator/constants/constants.dart';
-
-import '../NavBar.dart';
-import '../myWidgets/welcomePageWidgets/myCalculatorButtonWidget.dart';
-import '../myWidgets/welcomePageWidgets/myHistoryGradesWidget.dart';
+import 'package:grade_calculator/myWidgets/welcomePageWidgets/myCalculatorButtonWidget.dart';
+import 'package:grade_calculator/myWidgets/welcomePageWidgets/myHistoryGradesWidget.dart';
 
 class HistoryPage extends StatefulWidget {
   String uid;

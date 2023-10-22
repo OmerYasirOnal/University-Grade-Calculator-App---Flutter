@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:grade_calculator/Screens/authentication_screens/login_page.dart';
 import 'package:grade_calculator/view/ProfileScreen.dart';
-import 'package:grade_calculator/view/authPages/login_page.dart';
 
 import 'myWidgets/ProfileMenuWitget.dart';
 

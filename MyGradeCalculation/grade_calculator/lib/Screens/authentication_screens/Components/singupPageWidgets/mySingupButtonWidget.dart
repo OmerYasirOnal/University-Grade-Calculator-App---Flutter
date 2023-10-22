@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../controllers/auth_controller.dart';
+import 'package:grade_calculator/controllers/auth_controller.dart';
 
 class mySingupButtonWidget extends StatelessWidget {
   const mySingupButtonWidget({

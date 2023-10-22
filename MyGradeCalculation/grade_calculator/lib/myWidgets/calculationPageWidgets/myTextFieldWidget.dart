@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class textFieldWidget extends StatelessWidget {
   var index;
 
@@ -27,7 +26,9 @@ class textFieldWidget extends StatelessWidget {
         child: TextField(
           keyboardType: TextInputType.number,
           onChanged: (value) {
-            grades[index] = double.parse(value);
+            if (RegExp(r'^-?[0-9]+(\.[0-9]+)?$').hasMatch(value)) {
+              grades[index] = double.parse(value);
+            }
           },
           decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
