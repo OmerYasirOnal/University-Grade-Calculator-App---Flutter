@@ -4,6 +4,9 @@ A user-friendly, cross-platform app for students to calculate grades effortlessl
 # Üniversite Not Hesaplayıcı Uygulaması - Flutter
 
 Bu proje, Flutter kullanarak geliştirilmiş, öğrencilerin üniversite notlarını hesaplamalarına yardımcı olan bir mobil uygulamadır. Bu uygulama sayesinde öğrenciler derslerine ait notlarını kolayca girebilir ve mevcut durumlarına göre genel ortalamalarını hesaplayabilirler. Ayrıca öğrenciler, gelecek dönemlerde alacakları derslerin potansiyel etkilerini tahmin edebilirler.
+
+<img src="[resmin_urlsi](https://github.com/omeryasironal/University-Grade-Calculator-App---Flutter/assets/115497334/65fa338b-f2c4-4fad-931b-04d594a607f2)" alt="Açıklama metni" width="100" height="100">
+
 ![Login Page](https://github.com/omeryasironal/University-Grade-Calculator-App---Flutter/assets/115497334/65fa338b-f2c4-4fad-931b-04d594a607f2){width=100px height=100px}
 
 
