@@ -6,8 +6,11 @@ A user-friendly, cross-platform app for students to calculate grades effortlessl
 Bu proje, Flutter kullanarak geliştirilmiş, öğrencilerin üniversite notlarını hesaplamalarına yardımcı olan bir mobil uygulamadır. Bu uygulama sayesinde öğrenciler derslerine ait notlarını kolayca girebilir ve mevcut durumlarına göre genel ortalamalarını hesaplayabilirler. Ayrıca öğrenciler, gelecek dönemlerde alacakları derslerin potansiyel etkilerini tahmin edebilirler.
 
 <img src="https://github.com/omeryasironal/University-Grade-Calculator-App---Flutter/assets/115497334/65fa338b-f2c4-4fad-931b-04d594a607f2" alt="Açıklama metni" width="500">
+<img src="https://github.com/omeryasironal/University-Grade-Calculator-App---Flutter/assets/115497334/8562519b-2a97-4cc4-ae45-f248c845f259" alt="Açıklama metni" width="500">
 
-![Login Page](https://github.com/omeryasironal/University-Grade-Calculator-App---Flutter/assets/115497334/65fa338b-f2c4-4fad-931b-04d594a607f2){width=100px height=100px}
+<img src="https://github.com/omeryasironal/University-Grade-Calculator-App---Flutter/assets/115497334/6eb559b2-a6e2-4698-b9db-2d5b5ced944b" alt="Açıklama metni" width="500">
+<img src="https://github.com/omeryasironal/University-Grade-Calculator-App---Flutter/assets/115497334/3e9c8357-9012-44ee-a5db-aacc270bf2bf" alt="Açıklama metni" width="500">
+<img src="https://github.com/omeryasironal/University-Grade-Calculator-App---Flutter/assets/115497334/a5d4f10b-3d24-4b1b-b830-12aa8a6040fe" alt="Açıklama metni" width="500">
 
 
 
